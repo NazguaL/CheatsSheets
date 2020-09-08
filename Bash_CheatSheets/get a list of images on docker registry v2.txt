@@ -1,0 +1,9 @@
+List all repositories (effectively images):
+
+curl -X GET https://myregistry:5000/v2/_catalog
+> {"repositories":["redis","ubuntu"]}
+
+List all tags for a repository:
+
+curl -X GET https://myregistry:5000/v2/ubuntu/tags/list
+> {"name":"ubuntu","tags":["14.04"]}

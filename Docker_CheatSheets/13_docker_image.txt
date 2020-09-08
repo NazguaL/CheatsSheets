@@ -1,0 +1,42 @@
+# Скачиваем образ
+docker image pull nginx
+docker image pull alpine
+
+# Скачать заданные образы alpine
+docker image pull alpine:3.7
+docker image pull alpine:2.6
+
+# Скачать все доступные образы alpine
+docker image pull --all-tags alpine
+docker image pull -a alpine
+
+# Получить список локально скачанных образов
+docker image ls
+
+# с полным хешем
+docker image ls --digests
+# Получить список локально скачанных образов alpine
+docker image ls alpine
+
+# Скачиваем пользовательский образ на локальный компьютер
+docker image pull fholzer/nginx-brotli
+
+# Получаем подробную информацию про образ
+docker image inspect fholzer/nginx-brotli
+docker image inspect fholzer/nginx-brotli --format "{{.Config.Env}}"
+
+# Получаем информацию про слои
+docker image history fholzer/nginx-brotli
+docker image history --no-trunc fholzer/nginx-brotli
+
+# Cоздаём копию образа для docker hub registry
+docker image tag fholzer/nginx-brotli nazgual/brotli
+docker image tag nazgual/brotli nazgual/brotli:0.0.3
+
+# Cоздаём копию образа для third party registry
+docker image tag nazgual/brotli localhost:5000/nazgual/brotli
+docker image tag nazgual/brotli:0.0.3 localhost:5000/nazgual/brotli:0.0.3
+
+# Пушим образ в пользовательский репозиторий
+docker push localhost:5000/nazgual/brotli
+docker push localhost:5000/nazgual/brotli:0.0.3

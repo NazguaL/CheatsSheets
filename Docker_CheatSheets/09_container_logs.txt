@@ -1,0 +1,7 @@
+docker container run -d -p 27017:27017 --name db mongo
+
+
+
+# получить логи контейнера
+
+docker container logs db

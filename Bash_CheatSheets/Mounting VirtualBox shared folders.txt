@@ -1,0 +1,34 @@
+Open VirtualBox
+
+Right-click your VM, then click Settings
+
+Go to Shared Folders section
+
+Add a new shared folder
+
+On Add Share prompt, select the Folder Path in your host that you want to be accessible inside your VM.
+
+In the Folder Name field, type shared
+
+Uncheck Read-only and Auto-mount, and check Make Permanent
+
+Start your VM
+
+Once your VM is up and running, go to Devices menu -> Insert Guest Additions CD image menu
+
+Use the following command to mount the CD:
+
+sudo mount /dev/cdrom /media/cdrom
+Install dependencies for VirtualBox guest additions:
+sudo apt-get update
+sudo apt-get install build-essential linux-headers-`uname -r`
+Run installation script for the guest additions:
+sudo /media/cdrom/./VBoxLinuxAdditions.run
+Reboot VM
+sudo shutdown -r now
+Create "shared" directory in your home
+mkdir ~/shared
+Mount the shared folder from the host to your ~/shared directory
+sudo mount -t vboxsf shared ~/shared
+The host folder should now be accessible inside the VM.
+cd ~/shared

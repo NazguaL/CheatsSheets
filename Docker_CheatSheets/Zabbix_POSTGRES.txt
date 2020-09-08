@@ -1,0 +1,29 @@
+POSTGRES Based:
+++++++++++++++++++++++++++++++++++++++
+
+docker network create zabbix-net
+docker network inspect zabbix-net
+
+===== POSTGRES_Server=====
+docker run --name postgres-server \
+--network zabbix-net \
+-e POSTGRES_PASSWORD=zabbix \
+-e POSTGRES_USER=zabbix \
+-d postgres
+
+===== Zabbix Postgres =====
+docker run --name zabbix-server --network zabbix-net -p 10051:10051 \
+-e DB_SERVER_HOST="postgres-server" \
+-e POSTGRES_USER="zabbix" \
+-e POSTGRES_PASSWORD="zabbix" \
+-d zabbix/zabbix-server-pgsql:alpine-trunk
+
+===== Zabbix-Web Postgres ====
+docker run --name zabbix-web -p 8080:8080 --network zabbix-net \
+-e DB_SERVER_HOST="postgres-server" \
+-e POSTGRES_USER="zabbix" \
+-e POSTGRES_PASSWORD="zabbix" \
+-e ZBX_SERVER_HOST="zabbix-server" \
+-e ZBX_SERVER_NAME="StarWind Infrastrucure" \
+-e PHP_TZ="Europe/Kiev" \
+-d zabbix/zabbix-web-nginx-pgsql:alpine-trunk

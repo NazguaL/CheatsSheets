@@ -1,0 +1,29 @@
+# Создаём сеть
+docker network create frontend
+
+# #OR
+# docker network create -d bridge frontend
+
+# Получить список всех существующих сетей.
+docker network ls
+
+# Присоединить контейнер к сети
+docker network connect frontend proxy
+
+
+# Отсоединить контейнер от сети
+docker network disconnect frontend proxy
+
+# Удалить все не используемые сети
+docker network prune
+
+# RoundRobin with DNS
+# Запустить контейне с nginx.
+docker container run -d --net frontend --net-alias search elasticsearch:2
+docker container run -d --net frontend --net-alias search elasticsearch:2
+
+# nslookup
+docker container run --rm --net frontend alpine nslookup search
+
+# curl server info
+docker container run --rm --net frontend centos curl -s search:9200

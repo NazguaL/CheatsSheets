@@ -1,0 +1,15 @@
+docker container run -d -p 80:80 --name proxy \
+--health-cmd 'curl http://localhost:80/' \
+--health-retries 5 \
+--health-interval '10s' \
+nginx
+
+
+docker container run -d -p 80:80 --name proxy \
+--health-cmd 'curl http://localhost:80/' \
+-m 10485760 \
+--memory-reservation 5242880 \
+nginx
+
+docker update -m 33554432 proxy
+docker update --memory-swap 67108864 proxy

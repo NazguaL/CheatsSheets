@@ -1,0 +1,27 @@
+Import-Module VMware.VimAutomation.Core
+$ESXiVCHost = "%vsphereip%"
+$ESXiUser = "%esxiuser%" 
+$ESXiPassword = "%esxipassword%"
+if (Connect-VIServer $ESXiVCHost -User $ESXiUser -Password $ESXiPassword -Verbose)
+{
+    while($true)
+    {
+        if ((get-vm -Name %NBA_APPLIANCE%).PowerState -eq "PoweredOn")
+        {
+            if (!(get-vm -Name %NBA_APPLIANCE%).Guest.IPAddress)
+            {
+                Start-Sleep -Seconds 2
+            }
+            else
+            {
+                $veeambackupagentip = (get-vm -Name %NBA_APPLIANCE%).Guest.IPAddress[0]
+                "##teamcity[setParameter name='veeambackupagentip' value='$veeambackupagentip']"
+                break
+            }
+        }
+        else 
+        {
+            Start-Sleep -Seconds 2
+        }
+    }
+}

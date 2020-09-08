@@ -1,0 +1,34 @@
+docker container create <options> <image>
+
+docker container ls
+
+docker container run -p 8080:80 nginx
+docker container run --publish 80:80 nginx
+
+docker container run -p 8080:80 -d nginx
+docker container run --publish 80:80 --detach nginx
+
+docker container run --name webhost-nginx -p 8080:80 -d nginx
+
+docker container stop webhost-nginx
+docker container stop <hash>
+
+docker container rm webhost-nginx
+docker container rm <hash>
+
+docker container top webhost-nginx
+docker container top <hash>
+
+docker container stats webhost-nginx
+docker container stats <hash>
+
+docker container inspect webhost-nginx
+docker container inspect <hash>
+
+for VARIABLE in 1 2 3
+
+do
+
+	docker container create --name proxy-$VARIABLE nginx
+
+done

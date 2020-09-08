@@ -1,0 +1,3 @@
+docker inspect proxy | grep "Cmd" -A 4
+
+docker container inspect proxy --format "IP: {{ .NetworkSettings.IPAddress }} | Gateway: {{.NetworkSettings.Networks.bridge.Gateway}}"

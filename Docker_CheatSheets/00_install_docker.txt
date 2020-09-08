@@ -1,0 +1,12 @@
+sudo apt-get update
+sudo apt install docker.io
+sudo usermod -aG docker ${USER}
+id -nG
+
+
+docker version
+
+docker run hello-world
+docker images
+
+docker container run --rm hello-world

@@ -1,0 +1,1 @@
+sudo -S <<< "%vsa_pass%" systemctl enable StarWindVSA

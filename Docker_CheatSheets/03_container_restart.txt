@@ -1,0 +1,3 @@
+docker container run -d -p 80:80 --name proxy \
+--restrt always \
+nginx

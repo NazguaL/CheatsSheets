@@ -1,0 +1,10 @@
+Import-Module VMware.VimAutomation.Core
+$ESXiVCHost = "%vsphereip%"
+$ESXiUser = "%esxiuser%" 
+$ESXiPassword = "%esxipassword%"
+
+if (Connect-VIServer $ESXiVCHost -User $ESXiUser -Password $ESXiPassword)
+{
+New-VM -Name "%NBA_APPLIANCE%" -VM "%NBA_GOLD_IMAGE%" -VMHost %esxihostip% -ResourcePool "Projects" -DiskStorageFormat "Thin" -Datastore "DRS Storage"
+Start-VM -VM "%NBA_APPLIANCE%" | out-null
+}

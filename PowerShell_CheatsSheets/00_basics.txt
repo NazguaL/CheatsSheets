@@ -1,0 +1,18 @@
+Поиск комманд:
+	Get-Command
+		-Verb
+		-Noun
+		-Module
+
+	Get-module
+		-ListAvailable
+
+Справка:
+	Get-Help
+		[Command_Name]
+		-Datailed
+		-Full
+		-Examples
+		-Online
+
+Get-Alias

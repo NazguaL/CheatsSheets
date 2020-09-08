@@ -1,0 +1,20 @@
+Get-Service | Sort-Object Status -Descending | Select-Object -First 10
+
+Get-Service | Get-Member
+
+Dir C:\Windows\ | Get-Member -MemberType Property
+
+Get-Process | Sort-Object -Property CPU -Descending
+
+Get-Service | Get-Member -MemberType Method
+
+Get-Service | Select-Object -First 3 | ForEach-Object Start
+
+Get-Service | Out-File "C:\servises.txt"
+Get-Service | Export-Csv "C:\servises.csv"
+Import-Csv "C:\servises.csv" | Get-Member
+Import-Csv "C:\servises.csv" | Select-Object -First 3 | Format-Table
+
+
+
+
