@@ -24,6 +24,17 @@ EXPOSE 80 443 8080
 
 CMD ["nginx", "-g", "daemon off;"]
 
+### Dockerfile
+
+FROM nginx:alpine
+
+WORKDIR /usr/share/nginx/html
+
+# Указание Volume внутри контейнера
+VOLUME /usr/share/nginx/html
+
+COPY index.html index.html
+
 ### SH
 #!/bin/bash
 
