@@ -1,0 +1,1 @@
+Switch3(config)#int range fa0/1 - fa0/3

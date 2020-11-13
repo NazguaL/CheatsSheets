@@ -1,0 +1,7 @@
+Router3#reload in 1:30
+or
+Router3#reload at 03:00 30 apr
+
+Router3#show reload
+
+Router3#reload cancel

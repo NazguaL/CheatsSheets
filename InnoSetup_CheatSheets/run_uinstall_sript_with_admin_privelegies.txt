@@ -1,0 +1,27 @@
+procedure CurUninstallStepChanged(CurUninstallStep: TUninstallStep);
+var
+	PSPath: String;
+	ResultCode: Integer;
+begin
+	if CurUninstallStep = usUninstall then 
+	begin
+	PSPath := ExpandConstant('powershell.exe');
+    Exec(PSPath, ExpandConstant('-ExecutionPolicy Bypass -File "{app}\stop_and_delete_vm.ps1"'), ExpandConstant('{app}'), SW_HIDE, ewWaitUntilTerminated, ResultCode);
+	if (ResultCode = 0) then
+	begin
+		//MsgBox('Deletion OK.', 
+		//mbInformation, MB_OK);
+	end
+	else
+	if (ResultCode = 1) then
+	begin
+		MsgBox('Can not delete {#vHCA_AppName} VM. Please delete this VM manualy.', 
+		mbInformation, MB_OK);		
+	end;
+	if (ResultCode = 5) then
+	begin
+		MsgBox('Error while deletion {#vHCA_AppName} VM. Please delete this VM manualy.', 
+		mbError, MB_OK);		
+	end;
+	end;
+end;

@@ -1,0 +1,3 @@
+$NAPhysical = Get-NetAdapter -Physical
+$NAPhysical.Name #Don’t need this line but I use for testing”
+New-VMSwitch -Name “VMExternal” -NetAdapterName $NAPhysical.Name

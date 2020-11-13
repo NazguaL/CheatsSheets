@@ -1,0 +1,67 @@
+### docker-compose.yml
+
+version: "2.4"
+
+services:
+  webapp:
+    image: nginx:alpine
+    container_name: webapp
+	# Каталог с Dockerfile для сборки коммандой docker-compose build
+    build: ./webapp
+    ports:
+      - 80:80
+	depends_on:
+      - db:
+	    condition: service_started
+    volumes:
+      - ./html:/usr/share/nginx/html
+    networks:
+      - back
+	  
+  webhost:
+    image: nginx:alpine
+    container_name: webhost
+    ports:
+      - 80:80
+    depends_on:
+      - db:
+	    condition: service_started
+    volumes:
+	  # Примонтирован тот самый каталог, что и к webapp
+      - ./html:/usr/share/nginx/html
+    networks:
+      - back
+      - db
+
+  db:
+    image: mongo:4
+    container_name: storage
+	command: mongod --auth
+	ports:
+      - 27017:27017
+	restart: always
+    environment:
+      - MODE=dev  
+    volumes:
+      - ./data:/data/db
+	healthcheck:
+      test: echo 'db.runCommand("ping").ok' | mongo db:27017/test --quiet
+      interval: 10s
+      timeout: 10s
+      retries: 5
+    networks:
+      - db
+
+networks:
+  back:
+    driver: bridge
+  db:
+    driver: bridge
+	
+	
+# Bash
+
+docker-compose build
+docker-compose up -d
+docker-compose logs
+docker-compose down

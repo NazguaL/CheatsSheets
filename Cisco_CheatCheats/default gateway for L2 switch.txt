@@ -1,0 +1,1 @@
+(config)#ip default-gateway [ip adress]

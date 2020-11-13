@@ -1,0 +1,2 @@
+#!/bin/sh
+/home/user/progs/progs.py "$@"

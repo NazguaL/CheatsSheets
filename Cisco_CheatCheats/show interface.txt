@@ -1,0 +1,3 @@
+#show interface FastEthernet0/1
+or
+#sh in fa0/1

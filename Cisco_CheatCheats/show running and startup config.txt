@@ -1,0 +1,8 @@
+Router3>enable
+Router3#show running-config 
+or
+Router3#sh run
+
+Router3#show startup-config 
+or
+Router3#sh star

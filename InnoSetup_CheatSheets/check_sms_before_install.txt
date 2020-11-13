@@ -1,0 +1,21 @@
+//function PrepareToInstall(var NeedsRestart: Boolean): String;
+//begin
+//	NeedsRestart:=false;
+//	
+//	SetMarqueeProgress(false);
+//	DisplayInstallProgress(true, 'Checking is vSwitch exist...')
+//	
+//	if not IsVSwitchExist() then
+//	begin
+//		if  MsgBox(
+//				'Please create External vSwitch and press OK to continue or Cancel to abort installation.',
+//				mbConfirmation,
+//				MB_OKCANCEL) = IDCANCEL
+//		then
+//		begin
+//			Result:='Installation cancelled.';
+//		end;
+//		CancelWithoutPrompt := true;
+//		WizardForm.Close;
+//	end;	
+//end;

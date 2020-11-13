@@ -1,0 +1,2 @@
+(config)#line con 0
+(config-line)#logging synchronous 

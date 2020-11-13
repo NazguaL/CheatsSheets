@@ -1,0 +1,2 @@
+#copy running-config startup-config
+#copy run star

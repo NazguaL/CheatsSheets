@@ -1,0 +1,57 @@
+function IsVSwitchExist(): Boolean;
+var
+    ResultCode: Integer;
+	PSPath: String;
+begin
+	PSPath := ExpandConstant('powershell.exe');
+    Exec(PSPath, ExpandConstant('-ExecutionPolicy Bypass -File "{tmp}\is_vswitch_exist.ps1"'), ExpandConstant('{tmp}'), SW_HIDE, ewWaitUntilTerminated, ResultCode);
+	if (ResultCode = 0) then
+	begin
+		//WizardForm.StatusLabel.Caption:='External vSwitch exists.';
+	end
+	else
+	if (ResultCode = 1) then
+	begin
+		MsgBox('External vSwitch is not exist. Please create External vSwitch and start the installer again.', 
+		mbCriticalError, MB_OK);
+	end
+	else
+	if (ResultCode = 5) then
+	begin
+		MsgBox('Error while detecting External vSwitch. Please make sure that External vSwitch exists and start the installer again.', 
+		mbCriticalError, MB_OK);		
+	end;
+	Result:=(ResultCode = 0);
+end;
+
+function InitializeSetup(): Boolean;
+begin
+	Result := True;
+	CancelWithoutPrompt := false;
+	
+  	// Unpack utils to the temp dir
+	ExtractTemporaryFile( 'is_hyperv_exist.ps1' );
+	ExtractTemporaryFile( 'is_vm_exist.ps1' );	
+	ExtractTemporaryFile( 'is_vswitch_exist.ps1' );
+	ExtractTemporaryFile( 'create_vm.ps1');
+	ExtractTemporaryFile( 'open_vm.ps1');
+  
+  if not IsHyperVExist then
+  begin                     
+    //SuppressibleMsgBox('Error while detecting Microsoft Hyper-V Server role. Please make sure that Hyper-V role is installed.', mbCriticalError, MB_OK, MB_OK);
+    Result := False;
+  end;  
+  
+  if not IsVMNotExist then
+  begin                     
+    //SuppressibleMsgBox('Error: another vHCA Appliance on Server is detected. Please make sure that another vHCA Appliance is not installed on Server.', mbError, MB_OK, MB_OK);
+    Result := False;
+  end; 
+
+  if not IsVSwitchExist then
+  begin                     
+    //SuppressibleMsgBox('Error: External vSwitch is not exist. Please create External vSwitch.', mbError, MB_OK, MB_OK);
+    Result := False;
+  end;
+  
+end;
