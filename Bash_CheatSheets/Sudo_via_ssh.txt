@@ -1,1 +1,1 @@
-sudo -S <<< "%vsa_pass%" systemctl enable StarWindVSA
+sudo -S <<< "%pass%" systemctl enable [daemon]
