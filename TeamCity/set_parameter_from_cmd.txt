@@ -1,1 +1,3 @@
 echo "##teamcity[setParameter name='major' value='$GIT_REVISION']"
+
+# Usage in next steps only!!!

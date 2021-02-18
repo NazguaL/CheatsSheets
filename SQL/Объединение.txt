@@ -1,0 +1,14 @@
+Объединение нескольких таблиц
+
+SELECT prod_name, vend_name, prod_price, quantity
+FROM Orderltems, Products, Vendors 
+WHERE Products.vend_id = Vendors.vend_id 
+AND Orderltems.prod_id = Products.prod_id 
+AND order num = 20007;
+
+prod name 		vend name 	prod__price 	quantity
+18 inch teddy bear 	Bears R Us 	11.9900 	50
+Fish bean bag toy 	Doll House Inc. 3.4900 		100
+Bird bean bag toy 	Doll House Inc. 3.4900 		100
+Rabbit bean bag toy 	Doll House Inc. 3.4900 		100
+Raggedy Ann Doll 	House Inc. 	4.9900 		50

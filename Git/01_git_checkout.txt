@@ -1,0 +1,6 @@
+git checkout -b play-travis
+
+or 
+
+git branch play-travis
+git checkout play-travis

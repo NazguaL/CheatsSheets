@@ -1,0 +1,50 @@
+CREATE TABLE [Position]
+(
+ 
+[PositionId]  int NOT NULL ,
+ 
+[Name]        nvarchar(50) NOT NULL ,
+ 
+[Description] text NOT NULL ,
+
+
+ 
+
+CONSTRAINT [PK_position] PRIMARY KEY CLUSTERED ([PositionId] ASC)
+);
+
+GO
+
+CREATE TABLE [Employee]
+(
+ 
+[EmployeeId]  int NOT NULL ,
+ 
+[FirstName]    nvarchar(50) NOT NULL ,
+ 
+[SecondName]    nvarchar(50) NOT NULL ,
+ 
+[MiddleName]    nvarchar(50) NULL ,
+ 
+[DateOfBirth] date NOT NULL ,
+ 
+[AddressOfBirth]     nvarchar(50) NOT NULL ,
+ 
+[PositionId]  int NOT NULL ,
+ 
+[Salary]      float NOT NULL ,
+ 
+[Supplement]  float NOT NULL ,
+ 
+[PaymentDate] date NOT NULL ,
+ 
+[FullName] AS ((((([SecondName]+' ')+([FirstName]))+' ')+([MiddleName]))),
+
+
+ 
+CONSTRAINT [PK_employee] PRIMARY KEY CLUSTERED ([EmployeeId] ASC),
+  
+CONSTRAINT [PositionId] FOREIGN KEY ([PositionId]) REFERENCES [dbo].[Position] ([PositionId])
+);
+
+GO

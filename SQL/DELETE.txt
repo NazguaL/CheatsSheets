@@ -1,0 +1,6 @@
+DELETE FROM таблица 
+WHERE условие
+
+
+DELETE FROM Customers 
+WHERE oust id = 4000000006Т;

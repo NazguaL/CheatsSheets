@@ -1,0 +1,10 @@
+SELECT INTO копирует данные в новую таблицу (и, в зависимости 
+от СУБД, может перезаписать таблицу, если она уже существует).
+
+SELECT *
+INTO CustCopy 
+FROM Customers; /* Создаст новую таблицу */
+
+CREATE TABLE CustCopy AS /* Тоже самое для MySQL, SQLite */
+SELECT * FROM Customers;
+

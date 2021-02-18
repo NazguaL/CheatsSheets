@@ -1,0 +1,17 @@
+SELECT cust_id, cust_name, cust_contact 
+FROM Customers
+WHERE cust_name = 	(SELECT cust_name 
+			FROM Customers
+			WHERE oust contact = ’Jim Jones');
+
+Тоже самое через объединение:
+
+SELECT cl.cust_id, cl.cust_name, cl.cust_contact
+FROM Customers AS cl, Customers AS c2 
+WHERE cl. cust_name = c2 . cust__name 
+AND c2.cust contact = 'Jim Jones';
+
+
+cust id 	cust name 	cust contact
+1000000003 	Fun4All 	Jim Jones
+1000000004 	Fun4All 	Denise L. Stephens

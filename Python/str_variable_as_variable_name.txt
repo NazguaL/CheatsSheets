@@ -1,0 +1,23 @@
+for i in range(len(external_settings[key])):
+    print(external_settings[key][i])
+
+    print(type(external_settings[key][i]))
+    print(external_settings[key][i]['name'])
+    name = "c" + str(i) + "_name"
+    exec(name + "=external_settings[key][i]['name']")
+
+>>> candy = ['a','b','c']
+>>> fruit = ['d','e','f']
+>>> snack = ['g','h','i']
+>>> name = 'fruit'
+>>> eval(name)
+['d', 'e', 'f']  
+
+
+>>> name = "var_1"
+>>> locals()[name] = 5
+>>> print var_1
+5
+>>> exec(name + "= 6")
+>>> print var_1
+6

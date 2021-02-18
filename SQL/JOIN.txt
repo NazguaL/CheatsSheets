@@ -1,0 +1,32 @@
+=====OUTER JOIN=====
+SELECT Customers.cust_id,
+COUNT(Orders.order_num) AS num_ord 
+FROM Customers LEFT OUTER JOIN Orders 
+ON Customers.cust_id = Orders.cust_id 
+GROUP BY Customers.oust id;
+
+cust id 	num ord
+1000000001 	2
+1000000002 	0
+1000000003 	1
+1000000004 	1
+1000000005 	1
+
+=====INNER JOIN====
+SELECT Customers.cust_id,
+COUNT (Orders .order_num) AS num__ord 
+FROM Customers INNER JOIN Orders
+ON Customers. cust_id = Orders. cust__id 
+GROUP BY Customers.oust id;
+
+oust id 	num ord
+1000000001  	2
+1000000003 	1
+1000000004 	1
+1000000005 	1
+
+
+=====FULL OUTER JOIN====
+SELECT .Customers.cust_id, Orders.order_num 
+FROM Orders FULL OUTER JOIN Customers 
+ON Orders.oust id = Customers.oust id;

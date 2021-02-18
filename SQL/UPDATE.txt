@@ -1,0 +1,9 @@
+UPDATE таблица 
+SET поле = значение
+WHERE условие
+
+UPDATE 	Customers
+SET 	cust_contact = 'Sam Roberts',  
+	cust_email = 'sam0toyland.com'
+WHERE 	oust id = '1000000006';
+

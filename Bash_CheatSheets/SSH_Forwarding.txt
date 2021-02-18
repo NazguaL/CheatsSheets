@@ -1,0 +1,4 @@
+eval `ssh-agent -s`
+ssh-add -L
+ssh-add ~/.ssh/id_rsa
+ssh -i ~/.ssh/id_rsa -A Nazgual@35.207.125.153
